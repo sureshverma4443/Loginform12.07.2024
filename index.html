@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -23,6 +24,10 @@
             <h2>Already Registered? <a href="Loginform.html">Login form</a></h2>          
           
     </div>
+    <hr>
+    <div id="displaydata">
+
+    </div>
     
 </body>
 <script>
@@ -31,13 +36,13 @@
     let Email=document.getElementById("Email")
     let Password=document.getElementById("Password")
     let Mobile=document.getElementById("Mobile")
+
     let Register=document.getElementById("Register")
     Register.addEventListener("click",Registerdata)
 
-
-
-
-  async function Registerdata (){
+    
+  async function Registerdata (e){
+    e.preventDefault()
     let obj={
         Name:Name.value,
         Email:Email.value,
@@ -47,13 +52,67 @@
 
     }
     try{
-        let res=await axios.post("https://renderserver-uluy.onrender.com/Registerdata",obj)
-        console.log(res)
+        let res=await axios.post("https://renderserver-2-vqfy.onrender.com/Registerdata",obj)
+        // console.log(res)
+        form.reset()
+        getdata()
     }
    catch{
-    console.log(error.message)
+    console.log("error")
    }
   }
+  async function getdata (){
+    try{
+        let res=await axios.get("https://renderserver-2-vqfy.onrender.com/Registerdata")
+        displaydata(res.data)
+    }
+    catch{
+        console.log("error")
+    }
+
+  }
+   function displaydata (data){
+     let displaydata=document.getElementById("displaydata")
+     data.map((ele) => {
+        let div=document.createElement("div")
+        div.id="card"
+
+
+        let h1=document.createElement("h1")
+        h1.innerText=`Name:- ${ele.Name}`;
+        let h2=document.createElement("h1")
+        h2.innerText=`Email:-${ele.Email}`
+        let h3=document.createElement("h1")
+        h3.innerText=`Password:-XxxxxxX`
+        let h4=document.createElement("h1")
+        h4.innerText=`Mobile:-${ele.Mobile}`
+
+
+
+
+        let btns=document.createElement("div")
+        
+        btns.id="btns"
+
+        let btn1=document.createElement("button")
+        btn1.id="btn1"
+         btn1.innerText="Delete"
+
+
+         let btn2=document.createElement("button")
+         btn2.id="btn2"
+         btn2.innerText="Edit"
+         
+        
+      btns.append(btn1,btn2)
+        div.append(h1,h2,h3,h4,btns)
+        displaydata.append(div)
+
+    });
+
+
+   }
+   getdata()
 
 
 

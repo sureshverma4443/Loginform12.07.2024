@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="Loginform.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="Registrationform">
+    <div class="Loginform">
         <h1>Login form</h1>
         <form>
             <label>Email:-</label>
@@ -15,11 +16,60 @@
             <label>Password:-</label>
             <input type="password" id="Password" name="password" placeholder="Enter your password" required><br>
             
-            <div class="button"><button id="button">Login</button></div>
+            <div class="button"><button id="Login">Login</button></div>
             </form>
             <h2>Dont't have an account? <a href="index.html">Register</a></h2>          
           
     </div>
+    <hr>
+    <p id="msg"></p>
+    <label id="label1">user:-</label>
+    <span id="logo"></span>
     
 </body>
+<script>
+    let btn=document.getElementById("button")
+    let msg= document.getElementById("msg")
+    let logo=document.getElementById("logo")
+
+let Login=document.getElementById("Login")
+Login.addEventListener("click",() =>{
+    loginuser();
+})
+
+
+async function getdata (){
+    try{
+        let res=await axios.get("https://renderserver-2-vqfy.onrender.com/Registerdata")
+        loginuser()
+    }
+    catch{
+        console.log("error")
+    }
+}
+
+function loginuser (e){
+    e.preventDefault()
+    let userDetails={
+        email:document.getElementById("email").value,
+        Password:document.getElementById("Password").value
+    }
+
+    let value=res.data.find((Registerdata)=>
+        Registerdata.email===userDetails.email &&
+        Registerdata.Password===userDetails.Password
+    )
+    if(value){
+        msg.innerText="Login Done";
+        msg.style.color="green";
+        logo.innerText=value.email
+    }else{
+        msg.innerText="Details not fount"
+        msg.style.color="red"
+    }
+
+}
+
+
+</script>
 </html>

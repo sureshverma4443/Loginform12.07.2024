@@ -7,7 +7,7 @@ body{
     background-image: url(https://e1.pxfuel.com/desktop-wallpaper/721/613/desktop-wallpaper-abstract-login-page.jpg);
 }
 
-.Registrationform{
+.Loginform{
     border: 2px solid white;
     width: 35%;
     margin:1% auto;
@@ -27,6 +27,9 @@ form{
     margin: 5%;
     font-size: 25px;
 
+}
+#label1{
+    color: white;
 }
 
 input{
@@ -55,7 +58,7 @@ input::placeholder{
     align-items: center;
     /* border: 1px solid black; */
 }
-#Register{
+#Login{
     width: 50%;
     height: 40px;
     border-radius: 10px;
@@ -66,39 +69,3 @@ input::placeholder{
 a{
     color: chartreuse;
 }
-
-#displaydata{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 2%;
-    padding: 1%;
-    
-}
-#card{
-    border: 1px solid white;
-    padding: 5%;
-    overflow: hidden;
-    border-radius: 10%;
-}
-
-#btns{
-display: flex;
-justify-content: space-around;
-
-}
-#btn1{
-    background-color: red;
-    width: 25%;
-    height: 25px;
-    color: white;
-}
-#btn2{
-    background-color: greenyellow;
-    width: 25%;
-    height: 25px;
-   
-}
-
-
-
-
