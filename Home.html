@@ -18,13 +18,37 @@
             <a href="contact.html">Contact</a>
             <a href="https://www.google.com/">Google</a>
         </div>
-        <div class="search">
-            <input placeholder="Search">
-            <button>Search</button>
+        <div id="usercridemtial" >
+
+            <div id="useremail"class="nav-item">user</div>
+           
+            <button id="userlog" class="nav-item"></button>
         </div>
     </nav>
     <div class="herosection">
         <img src="https://as1.ftcdn.net/v2/jpg/06/57/86/06/1000_F_657860698_QCyEqAPQ2K1aFgRMycUQq2FI3M5vwMuC.jpg">
     </div>
+    <script>
+        const loggedInEmail=localStorage.getItem("loggedInEmail")||[];
+        let btn=document.getElementById("userlog");
+        btn.style.display="none";
+        
+          if(loggedInEmail){
+            const users=JSON.parse(localStorage.getItem("users"))||[];
+            const user = users.find((user)=>user.email===loggedInEmail);
+            if(user){
+                document.getElementById("useremail").innerText=user.name;
+                btn.innerText="Logout";
+                btn.style.display="block";
+            
+          }else{
+            window.location.href="index.html";
+
+            }
+            btn.addEventListener("click",removeKeyFromLocalStorage);
+          }
+
+    </script>
+    
     
 </html>
